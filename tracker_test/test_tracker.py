@@ -11,7 +11,7 @@ class NodeTracker():
     """
     counter = 0
 
-    def __init__(self, coord):
+    def __init__(self, id, coord):
 
         self.node = coin.SoSeparator()
         self.coordinate = coin.SoCoordinate3()
@@ -23,7 +23,7 @@ class NodeTracker():
 
         _selection_node.documentName.setValue('Document')
         _selection_node.objectName.setValue('Test Tracker')
-        _selection_node.subElementName.setValue(str(NodeTracker.counter))
+        _selection_node.subElementName.setValue(str(id))
 
         self.node.addChild(_selection_node)
         self.node.addChild(self.transform)
@@ -51,9 +51,9 @@ class TestTracker():
         self.tracker_node = coin.SoSeparator()
         self.crosshair_transform = coin.SoTransform()
 
-        for _v in _coords:
+        for _i, _v in enumerate(_coords):
 
-            _t = NodeTracker(_v)
+            _t = NodeTracker(_i, _v)
             self.trackers.append(_t)
             self.tracker_node.addChild(_t.node)
 
@@ -162,7 +162,7 @@ class TestTracker():
         Return the current scale (units per pixel) of the view
         """
 
-        #calcualte the distance on a 100-pixel line
+        #calculate the distance on a 100-pixel line
         coord_1 = self.view.getPoint((0, 0))
         coord_2 = self.view.getPoint((71, 71))
 
