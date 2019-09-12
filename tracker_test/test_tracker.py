@@ -9,8 +9,6 @@ class NodeTracker():
     """
     Class to manage interactive nodes at the scenegraph level
     """
-    counter = 0
-
     def __init__(self, id, coord):
 
         self.node = coin.SoSeparator()
@@ -31,8 +29,6 @@ class NodeTracker():
         self.node.addChild(coin.SoMarkerSet())
 
         self.coordinate.point.setValue(tuple(coord))
-
-        NodeTracker.counter += 1
 
 class TestTracker():
 
